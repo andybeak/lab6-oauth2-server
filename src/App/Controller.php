@@ -3,6 +3,7 @@
 namespace App;
 
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class Controller
 {
