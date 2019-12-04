@@ -31,7 +31,20 @@ class Router
      */
     public function getRouteInfo(): array
     {
-
+        try {
+            $httpMethod = $_SERVER['REQUEST_METHOD'];
+            $uri = $_SERVER['REQUEST_URI'];
+            // Strip query string (?foo=bar) and decode Ube RI
+            if (false !== $pos = strpos($uri, '?')) {
+                $uri = substr($uri, 0, $pos);
+            }
+            $uri = rawurldecode($uri);
+            $routeInfo = $this->dispatcher->dispatch($httpMethod, $uri);
+            return $routeInfo;
+        } catch (\Throwable $e) {
+            $this->logger->error(__METHOD__ . ' : ' . $e->getMessage());
+            throw new RouteException('Could not route request');
+        }
     }
 
     /**
@@ -40,7 +53,24 @@ class Router
      */
     public function dispatchRoute($routeInfo): void
     {
-
+        switch ($routeInfo[0]) {
+            case Dispatcher::NOT_FOUND:
+                http_response_code(404);
+                echo "404 - Not found";
+                break;
+            case Dispatcher::METHOD_NOT_ALLOWED:
+                $allowedMethods = $routeInfo[1];
+                http_response_code(405);
+                echo "405 - Method not allowed";
+                break;
+            case Dispatcher::FOUND:
+                $handler = $routeInfo[1];
+                $vars = $routeInfo[2];
+                $request = Request::createFromGlobals();
+                $handlerRoutine = $routeInfo[1];
+                $this->handler->$handlerRoutine($request, $vars);
+                break;
+        }
     }
 
     /**
