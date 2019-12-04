@@ -33,6 +33,8 @@ class Bootstrap
             return (new Handler())
                 ->setLogger($container['logger']);
         };
+
+        return $container;
     }
 
 }
