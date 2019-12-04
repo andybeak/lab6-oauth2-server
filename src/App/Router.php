@@ -21,7 +21,7 @@ class Router
     private $logger;
 
     /**
-     * @var Handler
+     * @var Controller
      */
     private $handler;
 
@@ -66,10 +66,10 @@ class Router
     }
 
     /**
-     * @param Handler $handler
+     * @param Controller $handler
      * @return Router
      */
-    public function setHandler(Handler $handler): Router
+    public function setHandler(Controller $handler): Router
     {
         $this->handler = $handler;
         return $this;
