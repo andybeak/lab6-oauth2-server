@@ -30,7 +30,7 @@ class Bootstrap
         };
 
         $container['controller'] = function($container) {
-            return (new Handler())
+            return (new Controller())
                 ->setLogger($container['logger']);
         };
 
