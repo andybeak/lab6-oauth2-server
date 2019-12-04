@@ -10,4 +10,4 @@ $container = Bootstrap::buildContainer();
 $router = (new Router())
     ->setDispatcher($container['dispatcher'])
     ->setLogger($container['logger'])
-    ->setHandler($container['handler']);
+    ->setHandler($container['controller']);
