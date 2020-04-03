@@ -69,11 +69,11 @@ class Bootstrap
 
             // Setup the authorization server
             $server = new \League\OAuth2\Server\AuthorizationServer(
-                $container['clientRepository'],
-                $container['accessTokenRepository'],
-                $container['scopeRepository'],
-                $container['privateKey'],
-                $container['encryptionKey']
+                $container['ClientRepository'],
+                $container['AccessTokenRepository'],
+                $container['ScopeRepository'],
+                $privateKey,
+                $encryptionKey
             );
 
             $grant = new \League\OAuth2\Server\Grant\AuthCodeGrant(
