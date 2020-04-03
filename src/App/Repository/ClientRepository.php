@@ -76,7 +76,7 @@ class ClientRepository implements ClientRepositoryInterface
      * @param Logger $logger
      * @return Router
      */
-    public function setLogger(Logger $logger): Controller
+    public function setLogger(Logger $logger): ClientRepository
     {
         $this->logger = $logger;
         return $this;
