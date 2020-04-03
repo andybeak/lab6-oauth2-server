@@ -5,6 +5,12 @@ namespace App;
 use Pimple\Container;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use App\Repository\{
+    AccessToken,
+    AccessTokenRepository,
+    AuthCodeEntity,
+    ClientRepository,
+    ScopeRepository};
 
 class Bootstrap
 {
