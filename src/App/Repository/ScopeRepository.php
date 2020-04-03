@@ -5,6 +5,7 @@ namespace App\Repository;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
+use Monolog\Logger;
 
 class ScopeRepository implements ScopeRepositoryInterface
 {
@@ -38,5 +39,16 @@ class ScopeRepository implements ScopeRepositoryInterface
         $userIdentifier = null
     ) {
         return [];
+    }
+    
+    /**
+     * Setter injection
+     * @param Logger $logger
+     * @return Router
+     */
+    public function setLogger(Logger $logger): ScopeRepository
+    {
+        $this->logger = $logger;
+        return $this;
     }
 }
