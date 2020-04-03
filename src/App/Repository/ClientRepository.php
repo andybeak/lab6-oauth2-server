@@ -68,4 +68,15 @@ class ClientRepository implements ClientRepositoryInterface
     {
         return true;
     }
+    
+    /**
+     * Setter injection
+     * @param LoggerInterface $logger
+     * @return Router
+     */
+    public function setLogger(LoggerInterface $logger): Controller
+    {
+        $this->logger = $logger;
+        return $this;
+    }
 }
