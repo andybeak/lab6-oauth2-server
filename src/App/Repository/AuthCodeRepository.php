@@ -30,10 +30,10 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
 
     /**
      * Setter injection
-     * @param LoggerInterface $logger
+     * @param Logger $logger
      * @return Router
      */
-    public function setLogger(LoggerInterface $logger): AuthCodeRepository
+    public function setLogger(Logger $logger): AuthCodeRepository
     {
         $this->logger = $logger;
         return $this;
