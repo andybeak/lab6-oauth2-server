@@ -68,7 +68,7 @@ class Bootstrap
         $container['AuthorizationServer'] = function($container) {
             // see https://oauth2.thephpleague.com/authorization-server/auth-code-grant/
 
-            $privateKey = 'file://' . __DIR__ . DIRECTORY_SEPERATOR . '..' . DIRECTORY_SEPERATOR . 'jwk/private.key';
+            $privateKey = 'file://' . __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'jwk/private.key';
 
             // generate using base64_encode(random_bytes(32))
             $encryptionKey = 'mwVGS+jB/41fBG6XLXug9VOXFV/sHc9jEaYxoQJUkK8=';
@@ -83,8 +83,8 @@ class Bootstrap
             );
 
             $grant = new \League\OAuth2\Server\Grant\AuthCodeGrant(
-                $container['authCodeRepository'],
-                $container['refreshTokenRepository'],
+                $container['AuthCodeRepository'],
+                $container['RefreshTokenRepository'],
                 // authorization codes will expire after 10 minutes
                 new \DateInterval('PT10M')
             );
