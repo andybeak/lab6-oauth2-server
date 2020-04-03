@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use Monolog\Logger;
 
 class RefreshTokenRepository implements RefreshTokenRepositoryInterface
@@ -11,16 +12,11 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
         // MUST IMPLEMENT
     }
 
-    public function persistNewRefreshToken(): void
-    {
-        // MUST IMPLEMENT
-    }
-
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
     {
         // MUST IMPLEMENT
     }
-    
+
     public function revokeRefreshToken($tokenId)
     {
         // MUST IMPLEMENT
@@ -37,7 +33,7 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
      * @param Logger $logger
      * @return Router
      */
-    public function setLogger(Logger $logger): AuthCodeRepository
+    public function setLogger(Logger $logger): RefreshTokenRepository
     {
         $this->logger = $logger;
         return $this;
