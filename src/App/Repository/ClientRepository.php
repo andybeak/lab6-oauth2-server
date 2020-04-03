@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
+use Monolog\Logger;
+
 
 /**
  * Class ClientRepository
@@ -71,10 +73,10 @@ class ClientRepository implements ClientRepositoryInterface
     
     /**
      * Setter injection
-     * @param LoggerInterface $logger
+     * @param Logger $logger
      * @return Router
      */
-    public function setLogger(LoggerInterface $logger): Controller
+    public function setLogger(Logger $logger): Controller
     {
         $this->logger = $logger;
         return $this;
