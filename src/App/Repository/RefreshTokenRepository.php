@@ -16,12 +16,17 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
         // MUST IMPLEMENT
     }
 
-    public function revokeRefreshToken(): void
+    public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
+    {
+        // MUST IMPLEMENT
+    }
+    
+    public function revokeRefreshToken($tokenId)
     {
         // MUST IMPLEMENT
     }
 
-    public function isRefreshTokenRevoked(): boolean
+    public function isRefreshTokenRevoked($tokenId): boolean
     {
         // MUST IMPLEMENT
         return false;
