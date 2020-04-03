@@ -92,6 +92,7 @@ class Bootstrap
                 new \DateInterval('PT1H') // access tokens will expire after 1 hour
             );
 
+            return $server;
         };
 
         return $container;
