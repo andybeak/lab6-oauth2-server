@@ -9,6 +9,8 @@ use App\Repository\{
     AccessToken,
     AccessTokenRepository,
     AuthCodeEntity,
+    AuthCodeRepository,
+    RefreshTokenRepository,
     ClientRepository,
     ScopeRepository};
 
@@ -32,12 +34,15 @@ class Bootstrap
         $container['dispatcher'] = function() {
             return \FastRoute\simpleDispatcher(function(\FastRoute\RouteCollector $r) {
                 $r->addRoute('GET', '/', 'home');
+                $r->addRoute('GET', '/authorize', 'authorize');
+                $r->addRoute('POST', '/access_token', 'access_token');
             });
         };
 
         $container['controller'] = function($container) {
             return (new Controller())
-                ->setLogger($container['logger']);
+                ->setLogger($container['logger'])
+                ->setServer($container['AuthorizationServer']);
         };
 
         $container['ClientRepository'] = function($container) {
@@ -71,7 +76,7 @@ class Bootstrap
             $privateKey = 'file://' . __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'jwk/private.key';
 
             // generate using base64_encode(random_bytes(32))
-            $encryptionKey = 'mwVGS+jB/41fBG6XLXug9VOXFV/sHc9jEaYxoQJUkK8=';
+            $encryptionKey = 'U26rujX/iWK3ZPoDx925Th867fnTYAXaVVGey9wh7Yw=';
 
             // Setup the authorization server
             $server = new \League\OAuth2\Server\AuthorizationServer(
@@ -99,6 +104,7 @@ class Bootstrap
             );
 
             return $server;
+
         };
 
         return $container;
