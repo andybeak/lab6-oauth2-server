@@ -5,6 +5,7 @@ namespace App\Repository;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
+use Monolog\Logger;
 
 class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
@@ -33,5 +34,16 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
     {
         // we would check if the token exists in the database and if so return true
         return false;
+    }
+    
+    /**
+     * Setter injection
+     * @param Logger $logger
+     * @return Router
+     */
+    public function setLogger(Logger $logger): AccessTokenRepository
+    {
+        $this->logger = $logger;
+        return $this;
     }
 }
